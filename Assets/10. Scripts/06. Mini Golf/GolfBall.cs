@@ -19,6 +19,8 @@ namespace Study3D.MiniGolf
         private Vector3 shotVelocity; // 공의 방향 * 세기가 연산되는 변수
         private bool shotRequested;
         private float slowTime;
+        
+        private Transform respawnPoint;
 
         public bool IsStopped => (shotRequested == false) && slowTime >= stopDelay;
         
@@ -81,6 +83,16 @@ namespace Study3D.MiniGolf
         {
             lastPosition = position;
             Teleport(position);
+        }
+        
+        public void SetRespawnPoint(Transform point)
+        {
+            respawnPoint = point;
+        }
+        
+        public void Respawn()
+        {
+            PlaceAt(respawnPoint.position);
         }
     }
 }
